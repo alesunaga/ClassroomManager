@@ -12,14 +12,16 @@ In object-oriented programming, direct access to attributes (like obj.number_of_
 
 🛠️ Installation and Usage
 
-PrerequisitesThis is a pure Python implementation and requires only a standard Python 3 environment.Code Structure (ClassroomManager Class)
+Prerequisites
+This is a pure Python implementation and requires only a standard Python 3 environment.Code Structure (ClassroomManager Class)
 The relevant code snippet showcasing the validation logic is as follows:
 
-class ClassroomManager:
+    
+    class ClassroomManager:
     def __init__(self, name, student_count=0):
         self.name = name
         self._number_of_students = student_count 
-    
+        
     @property
     def number_of_students(self):
         """Getter: Returns the current number of students."""
@@ -38,23 +40,7 @@ class ClassroomManager:
             raise ValueError("The number of students cannot be negative.")
         
         self._number_of_students = new_number
-Example
 
-To see the validation in action, run the following:# Create an instance
-makerspace_class = ClassroomManager("Makerspace")
-
-# Valid assignment (Uses the setter, no error)
-try:
-    makerspace_class.number_of_students = 25
-    print(f"Set successful. Current students: {makerspace_class.number_of_students}") 
-
-    # Invalid assignment (Triggers the ValueError)
-    makerspace_class.number_of_students = -5 
-
-except ValueError as e:
-    print(f"--- ERROR CAUGHT ---")
-    print(f"Validation failed: {e}")
-    print(f"Students count remains unchanged: {makerspace_class.number_of_students}")
 
 🤝 Contributing
 
