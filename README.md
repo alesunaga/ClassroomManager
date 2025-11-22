@@ -1,47 +1,51 @@
-ClassroomManager: Robust Student Count Management
-🌟 Overview
+School Management System: Inheritance and Data Validation
 
-This project provides a simple, Pythonic class (ClassroomManager) designed to securely manage numerical data, specifically the count of students in a classroom or educational activity (like a Makerspace).The core feature is the use of Python's built-in @property and @setter decorators to enforce data validation. This ensures that the number of students can never be set to a negative value, promoting data integrity within educational applications or school management systems.
+🌟 Overview: 
 
-💡 Why Use Properties?
+Object-Oriented School StructureThis project demonstrates the core Object-Oriented Programming (OOP) principle of Inheritance in Python. We establish a hierarchical structure starting with a base School class, which manages fundamental properties and validation logic.Specialized classes, like ElementarySchool and HighSchool, then inherit all the robust features of the parent class while adding their own unique attributes and methods (e.g., has_makerspace or requires_thesis).The structure ensures:Code Reusability: Student count validation (setNumberOfStudents) only needs to be defined once in the parent School class.Consistency: All derived schools automatically adhere to the same non-negative student count rule.Specialization: Subclasses can be extended with unique features relevant to their educational level.
 
-In object-oriented programming, direct access to attributes (like obj.number_of_students = -5) can lead to invalid states. By using Python's properties, we can:
-  Readability: Maintain clean assignment syntax (obj.number_of_students = 20).
-  Validation: Automatically run validation logic (like if new_number < 0: raise ValueError(...)) whenever the attribute is assigned a new value.
-  Data Integrity: Prevent logical errors by guaranteeing that the _number_of_students attribute always holds a valid, non-negative integer.
+🛠️ Installation and UsagePrerequisitesThis is a pure Python implementation and requires only a standard Python 3 environment.
 
-🛠️ Installation and Usage
+Code Structure (Inheritance)The base School class contains the shared validation logic:class School:
 
-Prerequisites
-This is a pure Python implementation and requires only a standard Python 3 environment.Code Structure (ClassroomManager Class)
-The relevant code snippet showcasing the validation logic is as follows:
-
-    
-    class ClassroomManager:
-    def __init__(self, name, student_count=0):
-        self.name = name
-        self._number_of_students = student_count 
+    def __init__(self, name, numberOfStudents=0):
+        # ... validation logic ...
+        self.setNumberOfStudents(numberOfStudents)
         
-    @property
-    def number_of_students(self):
-        """Getter: Returns the current number of students."""
-        return self._number_of_students
-    
-    @number_of_students.setter
-    def number_of_students(self, new_number):
-        """
-        Setter: Validates and sets the number of students.
-        Raises ValueError if the number is negative.
-        """
+    # The dedicated setter method enforcing validation
+    def setNumberOfStudents(self, new_number):
         if not isinstance(new_number, int):
             raise TypeError("The number of students must be an integer.")
             
         if new_number < 0:
-            raise ValueError("The number of students cannot be negative.")
+            raise ValueError("Number of students cannot be negative.")
         
-        self._number_of_students = new_number
+        self.numberOfStudents = new_numbe
+        
+        # ... other methods like getNumberOfStudents() and __repr__ ...
 
 
-🤝 Contributing
+Example
 
-Contributions are welcome! If you have suggestions for additional validation checks (e.g., maximum class size limits) or improvements to the documentation, please open an issue or submit a pull request.📄 LicenseThis project is licensed under the MIT License - see the LICENSE file for details.
+The example below demonstrates how the validation logic (defined in the parent School class) is automatically inherited and used by the HighSchool subclass, along with calling a specialized method:# Create an instance of the specialized class
+high_school = HighSchool("Technology Academy", 800)
+
+# 1. Validation (Inherited from School)
+try:
+    high_school.setNumberOfStudents(820)
+    print(f"Update successful: {high_school.getNumberOfStudents()} students.")
+    
+    #
+    try:
+        high_school.setNumberOfStudents(820)
+        print(f"Update successful: {high_school.getNumberOfStudents()} students.")
+    #2. Specialization (Method defined only in HighSchool)
+        print(high_school.get_level_info())
+    
+    # 3. Validation failure (Inherited, fails gracefully)
+        high_school.setNumberOfStudents(-10)
+        except ValueError as e:
+        print(f"\nERROR: {e}") 
+
+
+🤝 ContributingContributions are welcome! If you have suggestions for additional validation checks (e.g., maximum class size limits) or improvements to the documentation, please open an issue or submit a pull request.📄 LicenseThis project is licensed under the MIT License - see the LICENSE file for details.
